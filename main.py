@@ -1,7 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 import time
+from datetime import datetime
+import threading
 
 print ("hello")
 
@@ -33,7 +36,20 @@ def main():
   driver.find_element(by="id", value="id_username").send_keys("automated")
   driver.find_element(by = "id", value="id_password").send_keys("automatedautomated" + Keys.RETURN)
   time.sleep(3)
-  print(driver.current_url)
+  element = driver.find_element(by="xpath", value="/html/body/div[1]/h1[2]")
+  clean_element = clean_text(element.text)
+  print()
+  
+  now = time.strftime("%Y%m%d-%H%M%S")
+  now2 = now+".txt"
+  f = open(now2, "a")
+  f.write(str(clean_element))
+  f.close()
+  driver.close()
+  print(now2)
  
 
-print (main())
+
+while(True):
+  print (main())
+  time.sleep(5)
