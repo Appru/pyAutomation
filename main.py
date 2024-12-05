@@ -8,7 +8,7 @@ import threading
 
 print ("hello")
 
-service = Service('C:\\Users\\Jem\\Desktop\\Udemy\\PythonAutomation\\chromedriver.exe')
+service = Service('C:\\Users\\Jem\\Desktop\\Udemy\\Python Automation\\chromedriver.exe')
 
 
 def get_drvier():
@@ -41,7 +41,7 @@ def main():
   print()
   
   now = time.strftime("%Y%m%d-%H%M%S")
-  now2 = now+".txt"
+  now2 = "./data/"+now+".txt"
   f = open(now2, "a")
   f.write(str(clean_element))
   f.close()
