@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from bs4 import BeautifulSoup
 import requests
 
@@ -17,7 +17,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return '<h1> Currency Rate API</h1> <p>example url: /api/v1/usd-eur </p>'
+    return render_template('test.html')
+
 
 
 @app.route('/api/v1/<in_curr>-<out_cur>')
@@ -27,4 +28,5 @@ def api(in_curr, out_cur):
     return jsonify(result_dic)
 
 
-app.run()
+if __name__ == '__main__':
+    app.run()
