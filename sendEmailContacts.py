@@ -12,11 +12,10 @@ Hello you little so and so
 thanks
 
 """
-yag = yagmail.SMTP(user = "j.appru@gmail.com", password = "mltrnlxegylemnjr")
+yag = yagmail.SMTP(user = my_email, password = my_password)
 df = pandas.read_csv("data/contacts.csv")
 print(df)
 for index, row in df.iterrows():
     yag.send(to = row['email'], subject = "hello! "+row["name"], contents = contents)
     print("email SENT")
 
-#mltrnlxegylemnjr

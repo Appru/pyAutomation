@@ -14,8 +14,7 @@ thanks
 
 """,'data/new-new-new-data.csv']
 
-yag = yagmail.SMTP(user = "j.appru@gmail.com", password = "mltrnlxegylemnjr")
+yag = yagmail.SMTP(user = my_email, password = my_password)
 yag.send(to = receiver, subject = subject, contents = contents)
 print("email SENT")
 
-#mltrnlxegylemnjr
