@@ -5,14 +5,17 @@ from selenium.webdriver.common.by import By
 import time
 from datetime import datetime
 import threading
+import yagmail
+import os
 
-print ("hello")
+print ("Starting")
 
 service = Service('C:\\Users\\Jem\\Desktop\\Udemy\\Python Automation\\chromedriver.exe')
 def get_drvier():
   # Set options to make browsing easier
   options = webdriver.ChromeOptions()
   options.add_argument("disable-infobars")
+  options.add_argument('--headless=new')
   options.add_argument("start-maximized")
   options.add_argument("disable-dev-shm-usage")
   options.add_argument("no-sandbox")
@@ -24,11 +27,46 @@ def get_drvier():
   return driver
 
 
+
 def findPrice():
     driver = get_drvier()
-    time.sleep(5)
-    price = driver.find_element(by="id", value='app_indeks')
-    print(price)
+    time.sleep(3)
+    price = driver.find_element(By.XPATH, value='//*[@id="app_indeks"]/section[1]/div/div/div[2]/span[2]')
+    price_text = price.text
+    remove_percent = price_text.replace("%","")
+    print("CURRENT STOCK PRICE " +remove_percent)
     
+    return remove_percent
 
-findPrice()
+def send_email():
+  my_email = os.getenv('email')
+  my_password = os.getenv('password2')
+  receiver = "j.appru@gmail.com"
+  contents = """
+  DEAR CEO,
+  YOUR STOCK PRICE IS DOWN, BELOW -0.10%.
+
+  PLEASE ACT NOW
+  """
+  yag = yagmail.SMTP(user = my_email, password = my_password)
+  yag.send(to = receiver, subject = "STOCK PRICE DOWN", contents = contents)
+  print("email sent")
+
+
+
+  
+
+while True:
+  #print("test")
+  stock_num = float(findPrice())
+  #dummy_price = -0.12
+  if stock_num > -0.1:
+    print("we are all good!")
+  if stock_num <= -0.1:
+    send_email()
+    exit()
+  time.sleep(10)
+
+
+
+
