@@ -10,7 +10,7 @@ import os
 
 print ("Starting")
 
-service = Service('C:\\Users\\Jem\\Desktop\\Udemy\\Python Automation\\chromedriver.exe')
+service = Service('chromedriver.exe')
 def get_drvier():
   # Set options to make browsing easier
   options = webdriver.ChromeOptions()
@@ -63,7 +63,7 @@ while True:
     print("we are all good!")
   if stock_num <= -0.1:
     send_email()
-    exit()
+    
   time.sleep(10)
 
 
