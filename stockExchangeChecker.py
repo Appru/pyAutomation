@@ -44,16 +44,15 @@ def send_email():
   receiver = "j.appru@gmail.com"
   contents = """
   DEAR CEO,
-  YOUR STOCK PRICE IS DOWN, BELOW -0.10%.
+  YOUR STOCK PRICE IS DOWN BELOW -0.10%.
+
+  RESTART THE PYTHON SCRIPT AT ONCE
 
   PLEASE ACT NOW
   """
   yag = yagmail.SMTP(user = my_email, password = my_password)
   yag.send(to = receiver, subject = "STOCK PRICE DOWN", contents = contents)
   print("email sent")
-
-
-
   
 
 while True:
